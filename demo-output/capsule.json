@@ -1,0 +1,1222 @@
+{
+  "capsule_version": "1",
+  "generated_at": "2026-10-15T07:25:41+00:00",
+  "repository": {
+    "path_name": "LinkWatch",
+    "remote": "https://github.com/rishrek/LinkWatch.git",
+    "commit": "f52f3930c8e7c33d934ccf614955a38e26984bd5",
+    "dirty": true
+  },
+  "dependencies": {
+    "manifests": [
+      "requirements-dev.txt",
+      "requirements.txt",
+      "pyproject.toml"
+    ],
+    "python_requires": ">=3.10",
+    "items": [
+      {
+        "name": "pytest",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "dev",
+        "file": "requirements-dev.txt",
+        "line": 1,
+        "resolved_version": "9.1.1"
+      },
+      {
+        "name": "nose",
+        "specifier": "==1.3.7",
+        "pinned_version": "1.3.7",
+        "marker": null,
+        "kind": "dev",
+        "file": "requirements-dev.txt",
+        "line": 2,
+        "resolved_version": "1.3.7"
+      },
+      {
+        "name": "toml",
+        "specifier": "==0.10.2",
+        "pinned_version": "0.10.2",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 1,
+        "resolved_version": "0.10.2"
+      },
+      {
+        "name": "appdirs",
+        "specifier": "==1.4.4",
+        "pinned_version": "1.4.4",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 2,
+        "resolved_version": "1.4.4"
+      },
+      {
+        "name": "requests",
+        "specifier": "==2.31.0",
+        "pinned_version": "2.31.0",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 3,
+        "resolved_version": "2.31.0"
+      },
+      {
+        "name": "jinja2",
+        "specifier": "==2.11.3",
+        "pinned_version": "2.11.3",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 4,
+        "resolved_version": "2.11.3"
+      },
+      {
+        "name": "pydantic",
+        "specifier": "==1.10.13",
+        "pinned_version": "1.10.13",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 5,
+        "resolved_version": "1.10.13"
+      },
+      {
+        "name": "click",
+        "specifier": ">=7",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 6,
+        "resolved_version": "8.5.0"
+      },
+      {
+        "name": "six",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 7,
+        "resolved_version": "1.17.0"
+      },
+      {
+        "name": "chardet",
+        "specifier": "==5.2.0",
+        "pinned_version": "5.2.0",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 8,
+        "resolved_version": "5.2.0"
+      },
+      {
+        "name": "setuptools",
+        "specifier": "==75.8.0",
+        "pinned_version": "75.8.0",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 9,
+        "resolved_version": "75.8.0"
+      },
+      {
+        "name": "idna",
+        "specifier": "==2.7",
+        "pinned_version": "2.7",
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 10,
+        "resolved_version": "2.7"
+      },
+      {
+        "name": "python-dateutil",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 11,
+        "resolved_version": "2.9.0.post0"
+      },
+      {
+        "name": "rich",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "requirements.txt",
+        "line": 12,
+        "resolved_version": "15.0.0"
+      },
+      {
+        "name": "toml",
+        "specifier": "==0.10.2",
+        "pinned_version": "0.10.2",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 13,
+        "resolved_version": "0.10.2"
+      },
+      {
+        "name": "appdirs",
+        "specifier": "==1.4.4",
+        "pinned_version": "1.4.4",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 14,
+        "resolved_version": "1.4.4"
+      },
+      {
+        "name": "requests",
+        "specifier": "==2.31.0",
+        "pinned_version": "2.31.0",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 15,
+        "resolved_version": "2.31.0"
+      },
+      {
+        "name": "jinja2",
+        "specifier": "==2.11.3",
+        "pinned_version": "2.11.3",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 16,
+        "resolved_version": "2.11.3"
+      },
+      {
+        "name": "pydantic",
+        "specifier": ">=2",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 17,
+        "resolved_version": "1.10.13"
+      },
+      {
+        "name": "click",
+        "specifier": ">=7",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 18,
+        "resolved_version": "8.5.0"
+      },
+      {
+        "name": "six",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 19,
+        "resolved_version": "1.17.0"
+      },
+      {
+        "name": "chardet",
+        "specifier": "==5.2.0",
+        "pinned_version": "5.2.0",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 20,
+        "resolved_version": "5.2.0"
+      },
+      {
+        "name": "setuptools",
+        "specifier": "==75.8.0",
+        "pinned_version": "75.8.0",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 21,
+        "resolved_version": "75.8.0"
+      },
+      {
+        "name": "idna",
+        "specifier": "==2.7",
+        "pinned_version": "2.7",
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 22,
+        "resolved_version": "2.7"
+      },
+      {
+        "name": "python-dateutil",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 23,
+        "resolved_version": "2.9.0.post0"
+      },
+      {
+        "name": "rich",
+        "specifier": "",
+        "pinned_version": null,
+        "marker": null,
+        "kind": "runtime",
+        "file": "pyproject.toml",
+        "line": 24,
+        "resolved_version": "15.0.0"
+      }
+    ],
+    "parse_issues": []
+  },
+  "risk_evidence": {
+    "indicators": [
+      {
+        "package": "pydantic",
+        "indicator": "conflicting_constraints",
+        "severity": "warn",
+        "evidence": [
+          "requirements.txt pins 1.10.13 but pyproject.toml requires '>=2'"
+        ]
+      },
+      {
+        "package": "certifi",
+        "indicator": "imported_but_undeclared",
+        "severity": "warn",
+        "evidence": [
+          "linkwatch/checker.py:4"
+        ]
+      },
+      {
+        "package": "idna",
+        "indicator": "no_static_import_found",
+        "severity": "info",
+        "evidence": [
+          "declared in manifest; no static import found (not proof of non-use)"
+        ]
+      },
+      {
+        "package": "nose",
+        "indicator": "no_static_import_found",
+        "severity": "info",
+        "evidence": [
+          "declared in manifest; no static import found (not proof of non-use)"
+        ]
+      },
+      {
+        "package": "six",
+        "indicator": "no_static_import_found",
+        "severity": "info",
+        "evidence": [
+          "declared in manifest; no static import found (not proof of non-use)"
+        ]
+      },
+      {
+        "package": "requests",
+        "indicator": "private_api_import",
+        "severity": "warn",
+        "evidence": [
+          "linkwatch/encoding.py:5 imports requests.utils._parse_content_type_header"
+        ]
+      },
+      {
+        "package": "jinja2",
+        "indicator": "observed_in_baseline_output",
+        "severity": "high",
+        "evidence": [
+          "E   ImportError: cannot import name 'soft_unicode' from 'markupsafe' (<tmp>\\venv\\Lib\\site-packages\\markupsafe\\__init__.py)",
+          "..\\venv\\Lib\\site-packages\\jinja2\\filters.py:13: ImportError"
+        ]
+      },
+      {
+        "package": "setuptools",
+        "indicator": "observed_in_baseline_output",
+        "severity": "high",
+        "evidence": [
+          "<tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html"
+        ]
+      },
+      {
+        "package": "pytest",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "nose",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "toml",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "appdirs",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "requests",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "jinja2",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "pydantic",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "click",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "six",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "chardet",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "setuptools",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "idna",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "python-dateutil",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "rich",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "toml",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "appdirs",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "requests",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "jinja2",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "pydantic",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "click",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "six",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "chardet",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "setuptools",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "idna",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "python-dateutil",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      },
+      {
+        "package": "rich",
+        "indicator": "maintenance_activity",
+        "severity": "info",
+        "evidence": [
+          "not checked: no package-index metadata was queried (offline run)"
+        ]
+      }
+    ],
+    "package_levels": {
+      "pydantic": {
+        "level": "medium",
+        "contributing": [
+          "conflicting_constraints"
+        ]
+      },
+      "certifi": {
+        "level": "medium",
+        "contributing": [
+          "imported_but_undeclared"
+        ]
+      },
+      "idna": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "nose": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "six": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "requests": {
+        "level": "medium",
+        "contributing": [
+          "private_api_import"
+        ]
+      },
+      "jinja2": {
+        "level": "high",
+        "contributing": [
+          "observed_in_baseline_output"
+        ]
+      },
+      "setuptools": {
+        "level": "high",
+        "contributing": [
+          "observed_in_baseline_output"
+        ]
+      },
+      "pytest": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "toml": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "appdirs": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "click": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "chardet": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "python-dateutil": {
+        "level": "no_issue_observed",
+        "contributing": []
+      },
+      "rich": {
+        "level": "no_issue_observed",
+        "contributing": []
+      }
+    }
+  },
+  "usage": {
+    "usages": {
+      "appdirs": [
+        {
+          "file": "linkwatch/cache.py",
+          "line": 4,
+          "module": "appdirs",
+          "names": [
+            "user_cache_dir"
+          ]
+        }
+      ],
+      "certifi": [
+        {
+          "file": "linkwatch/checker.py",
+          "line": 4,
+          "module": "certifi",
+          "names": []
+        }
+      ],
+      "requests": [
+        {
+          "file": "linkwatch/checker.py",
+          "line": 5,
+          "module": "requests",
+          "names": []
+        },
+        {
+          "file": "linkwatch/checker.py",
+          "line": 6,
+          "module": "requests",
+          "names": [
+            "Session"
+          ]
+        },
+        {
+          "file": "linkwatch/encoding.py",
+          "line": 5,
+          "module": "requests.utils",
+          "names": [
+            "_parse_content_type_header"
+          ]
+        },
+        {
+          "file": "linkwatch/http_patch.py",
+          "line": 1,
+          "module": "requests",
+          "names": []
+        }
+      ],
+      "click": [
+        {
+          "file": "linkwatch/cli.py",
+          "line": 1,
+          "module": "click",
+          "names": []
+        },
+        {
+          "file": "tests/test_report.py",
+          "line": 1,
+          "module": "click.testing",
+          "names": [
+            "CliRunner"
+          ]
+        }
+      ],
+      "rich": [
+        {
+          "file": "linkwatch/cli.py",
+          "line": 2,
+          "module": "rich.console",
+          "names": [
+            "Console"
+          ]
+        },
+        {
+          "file": "linkwatch/cli.py",
+          "line": 3,
+          "module": "rich.live",
+          "names": [
+            "Live"
+          ]
+        },
+        {
+          "file": "linkwatch/cli.py",
+          "line": 4,
+          "module": "rich.table",
+          "names": [
+            "Table"
+          ]
+        }
+      ],
+      "toml": [
+        {
+          "file": "linkwatch/config.py",
+          "line": 3,
+          "module": "toml",
+          "names": []
+        }
+      ],
+      "pydantic": [
+        {
+          "file": "linkwatch/config.py",
+          "line": 4,
+          "module": "pydantic",
+          "names": [
+            "BaseModel",
+            "validator"
+          ]
+        }
+      ],
+      "python-dateutil": [
+        {
+          "file": "linkwatch/dates.py",
+          "line": 1,
+          "module": "dateutil",
+          "names": [
+            "parser"
+          ]
+        }
+      ],
+      "chardet": [
+        {
+          "file": "linkwatch/encoding.py",
+          "line": 4,
+          "module": "chardet",
+          "names": []
+        }
+      ],
+      "jinja2": [
+        {
+          "file": "linkwatch/report.py",
+          "line": 3,
+          "module": "jinja2",
+          "names": [
+            "Environment",
+            "FileSystemLoader",
+            "select_autoescape"
+          ]
+        }
+      ],
+      "setuptools": [
+        {
+          "file": "linkwatch/resources.py",
+          "line": 1,
+          "module": "pkg_resources",
+          "names": []
+        }
+      ],
+      "pytest": [
+        {
+          "file": "tests/conftest.py",
+          "line": 6,
+          "module": "pytest",
+          "names": []
+        }
+      ]
+    },
+    "undeclared_imports": [
+      "certifi"
+    ],
+    "no_import_found": [
+      "idna",
+      "nose",
+      "six"
+    ],
+    "private_api_imports": [
+      {
+        "package": "requests",
+        "file": "linkwatch/encoding.py",
+        "line": 5,
+        "name": "requests.utils._parse_content_type_header"
+      }
+    ],
+    "dynamic_import_sites": [],
+    "limitations": [
+      "Static AST analysis only; imports inside strings, plugins, entry points or dynamic import calls are not resolved.",
+      "'no_import_found' means no static import was seen; it does NOT prove the package is unused (transitive, runtime or tooling use is possible).",
+      "Import-name to distribution mapping uses a small static alias table; unusual mappings may be misreported as undeclared."
+    ]
+  },
+  "ai_recommendations": {
+    "status": "ok",
+    "recommendations": [
+      {
+        "package": "jinja2",
+        "action": "upgrade",
+        "replacement_candidates": [
+          "Jinja2>=2.0"
+        ],
+        "rationale": "Observed ImportError suggests incompatibility issues with markupsafe. Upgrading is recommended.",
+        "migration_steps": [
+          "manifest_edits",
+          "find\": \"Jinja2==2.11.3\"",
+          "file\": \"requirements.txt\""
+        ],
+        "compatibility_concerns": [
+          "requirements.txt pins 2.11.3 but pyproject.toml requires '>=2'"
+        ],
+        "manifest_edits": [
+          {
+            "file": "requirements.txt",
+            "find": "Jinja2==2.11.3",
+            "replace": "Jinja2>=2.0"
+          },
+          {
+            "file": "pyproject.toml",
+            "find": "\"Jinja2==2.11.3\",",
+            "replace": "\"Jinja2>=2.0\""
+          }
+        ],
+        "suggested_tests": [
+          "Run tests to ensure compatibility with the upgraded Jinja2 version."
+        ]
+      },
+      {
+        "package": "setuptools",
+        "action": "upgrade",
+        "replacement_candidates": [
+          "setuptools>=60"
+        ],
+        "rationale": "Observed DeprecationWarning regarding pkg_resources, indicating an upgrade is beneficial.",
+        "migration_steps": [
+          "manifest_edits",
+          "find\": \"setuptools==75.8.0\"",
+          "file\": \"requirements.txt\""
+        ],
+        "compatibility_concerns": [
+          "requirements.txt pins 75.8.0 but pyproject.toml requires '>=60'"
+        ],
+        "manifest_edits": [
+          {
+            "file": "requirements.txt",
+            "find": "setuptools==75.8.0",
+            "replace": "setuptools>=60"
+          },
+          {
+            "file": "pyproject.toml",
+            "find": "\"setuptools==75.8.0\",",
+            "replace": "\"setuptools>=60\""
+          }
+        ],
+        "suggested_tests": [
+          "Run tests to ensure compatibility with the upgraded setuptools version."
+        ]
+      },
+      {
+        "package": "certifi",
+        "action": "investigate",
+        "replacement_candidates": [],
+        "rationale": "The package is imported but not declared in dependencies. Its necessity and version status are unknown.",
+        "migration_steps": [],
+        "compatibility_concerns": [],
+        "manifest_edits": [],
+        "suggested_tests": [
+          "Determine if certifi is required and add it to the dependency list."
+        ]
+      },
+      {
+        "package": "pydantic",
+        "action": "upgrade",
+        "replacement_candidates": [
+          "pydantic>=2"
+        ],
+        "rationale": "There is a conflict between the pinned version (1.10.13) in requirements.txt and the requirement (>=2) in pyproject.toml. Upgrading to satisfy the modern requirement is necessary.",
+        "migration_steps": [
+          "manifest_edits",
+          "find\": \"pydantic==1.10.13\"",
+          "file\": \"requirements.txt\""
+        ],
+        "compatibility_concerns": [
+          "requirements.txt pins 1.10.13 but pyproject.toml requires '>=2'"
+        ],
+        "manifest_edits": [
+          {
+            "file": "requirements.txt",
+            "find": "pydantic==1.10.13",
+            "replace": "pydantic>=2"
+          }
+        ],
+        "suggested_tests": [
+          "Run tests to ensure compatibility with Pydantic v2."
+        ]
+      }
+    ]
+  },
+  "migration_proposal": {
+    "status": "proposed",
+    "accepted_edits": [
+      {
+        "file": "requirements.txt",
+        "find": "Jinja2==2.11.3",
+        "replace": "Jinja2>=2.0"
+      },
+      {
+        "file": "requirements.txt",
+        "find": "setuptools==75.8.0",
+        "replace": "setuptools>=60"
+      },
+      {
+        "file": "requirements.txt",
+        "find": "pydantic==1.10.13",
+        "replace": "pydantic>=2"
+      }
+    ],
+    "rejected_edits": [
+      {
+        "file": "pyproject.toml",
+        "find": "\"Jinja2==2.11.3\",",
+        "reason": "edit would make pyproject.toml invalid TOML: Unclosed array (at line 17, column 5)"
+      },
+      {
+        "file": "pyproject.toml",
+        "find": "\"setuptools==75.8.0\",",
+        "reason": "edit would make pyproject.toml invalid TOML: Unclosed array (at line 22, column 5)"
+      }
+    ],
+    "diff": "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,7 +1,7 @@\n toml==0.10.2\n appdirs==1.4.4\n requests==2.31.0\n-Jinja2==2.11.3\n+Jinja2>=2.0\n pydantic==1.10.13\n click>=7\n six\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -6,7 +6,7 @@\n click>=7\n six\n chardet==5.2.0\n-setuptools==75.8.0\n+setuptools>=60\n idna==2.7\n python-dateutil\n rich\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -2,7 +2,7 @@\n appdirs==1.4.4\n requests==2.31.0\n Jinja2==2.11.3\n-pydantic==1.10.13\n+pydantic>=2\n click>=7\n six\n chardet==5.2.0\n"
+  },
+  "suggested_tests": [
+    "Run tests to ensure compatibility with the upgraded Jinja2 version.",
+    "Run tests to ensure compatibility with the upgraded setuptools version.",
+    "Determine if certifi is required and add it to the dependency list.",
+    "Run tests to ensure compatibility with Pydantic v2."
+  ],
+  "executed_tests": {
+    "baseline": {
+      "label": "baseline",
+      "workdir": "<tmp>",
+      "steps": [
+        {
+          "command": [
+            "<python>",
+            "-m",
+            "venv",
+            "<tmp>\\venv"
+          ],
+          "exit_code": 0,
+          "output": ""
+        },
+        {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "-q",
+            "--disable-pip-version-check",
+            "-r",
+            "requirements-dev.txt",
+            "-r",
+            "requirements.txt"
+          ],
+          "exit_code": 0,
+          "output": ""
+        },
+        {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "exit_code": 0,
+          "output": "No broken requirements found.\n"
+        },
+        {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=<tmp>\\junit.xml"
+          ],
+          "exit_code": 1,
+          "output": ".........F                                                               [100%]\n================================== FAILURES ===================================\n________________________ test_report_renders_all_sites ________________________\n\ntmp_path = WindowsPath('<home>/AppData/Local/Temp/pytest-of-Rayyaan/pytest-32/test_report_renders_all_sites0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002593E6D9F40>\n\n    def test_report_renders_all_sites(tmp_path, monkeypatch):\n        monkeypatch.setenv(\"LINKWATCH_CACHE_DIR\", str(tmp_path))\n        cache.save_results(RESULTS)\n        output = tmp_path / \"status.html\"\n>       result = CliRunner().invoke(cli, [\"report\", \"-o\", str(output)], catch_exceptions=False)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests\\test_report.py:20: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n..\\venv\\Lib\\site-packages\\click\\testing.py:687: in invoke\n    return_value = cli.main(args=args or (), prog_name=prog_name, **extra)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1552: in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:2032: in invoke\n    return _process_result(sub_ctx.command.invoke(sub_ctx))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1415: in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:910: in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nlinkwatch\\cli.py:56: in report\n    from .report import render_report\nlinkwatch\\report.py:3: in <module>\n    from jinja2 import Environment, FileSystemLoader, select_autoescape\n..\\venv\\Lib\\site-packages\\jinja2\\__init__.py:12: in <module>\n    from .environment import Environment\n..\\venv\\Lib\\site-packages\\jinja2\\environment.py:25: in <module>\n    from .defaults import BLOCK_END_STRING\n..\\venv\\Lib\\site-packages\\jinja2\\defaults.py:3: in <module>\n    from .filters import FILTERS as DEFAULT_FILTERS  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    # -*- coding: utf-8 -*-\n    \"\"\"Built-in template filters used with the ``|`` operator.\"\"\"\n    import math\n    import random\n    import re\n    import warnings\n    from collections import namedtuple\n    from itertools import chain\n    from itertools import groupby\n    \n    from markupsafe import escape\n    from markupsafe import Markup\n>   from markupsafe import soft_unicode\nE   ImportError: cannot import name 'soft_unicode' from 'markupsafe' (<tmp>\\venv\\Lib\\site-packages\\markupsafe\\__init__.py)\n\n..\\venv\\Lib\\site-packages\\jinja2\\filters.py:13: ImportError\n============================== warnings summary ===============================\nlinkwatch\\resources.py:1\n  <tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html\n    import pkg_resources\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/test_report.py::test_report_renders_all_sites - ImportError: can...\n1 failed, 9 passed, 1 warning in 8.74s\n"
+        }
+      ],
+      "status": "failed",
+      "tests": {
+        "tests.test_cache::test_cache_round_trip": "passed",
+        "tests.test_checker::test_ok_is_up": "passed",
+        "tests.test_checker::test_missing_is_down": "passed",
+        "tests.test_checker::test_redirect_is_up": "passed",
+        "tests.test_checker::test_slow_is_up": "passed",
+        "tests.test_checker::test_closed_port_is_down": "passed",
+        "tests.test_checker::test_latin1_title": "passed",
+        "tests.test_checker::test_user_agent": "passed",
+        "tests.test_config::test_sites_file_loads": "passed",
+        "tests.test_report::test_report_renders_all_sites": "failed"
+      },
+      "pip_check": {
+        "command": [
+          "<tmp>\\venv\\Scripts\\python.exe",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "output": "No broken requirements found.\n"
+      },
+      "resolved": {
+        "appdirs": "1.4.4",
+        "certifi": "2026.7.22",
+        "chardet": "5.2.0",
+        "charset-normalizer": "3.5.2",
+        "click": "8.5.0",
+        "colorama": "0.4.6",
+        "idna": "2.7",
+        "iniconfig": "2.3.1",
+        "jinja2": "2.11.3",
+        "markdown-it-py": "4.2.0",
+        "markupsafe": "3.0.4",
+        "mdurl": "0.1.2",
+        "nose": "1.3.7",
+        "packaging": "26.3",
+        "pip": "25.0.1",
+        "pluggy": "1.6.0",
+        "pydantic": "1.10.13",
+        "pygments": "2.21.0",
+        "pytest": "9.1.1",
+        "python-dateutil": "2.9.0.post0",
+        "requests": "2.31.0",
+        "rich": "15.0.0",
+        "setuptools": "75.8.0",
+        "six": "1.17.0",
+        "toml": "0.10.2",
+        "typing-extensions": "4.16.0",
+        "urllib3": "2.8.0"
+      },
+      "output": ".........F                                                               [100%]\n================================== FAILURES ===================================\n________________________ test_report_renders_all_sites ________________________\n\ntmp_path = WindowsPath('<home>/AppData/Local/Temp/pytest-of-Rayyaan/pytest-32/test_report_renders_all_sites0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002593E6D9F40>\n\n    def test_report_renders_all_sites(tmp_path, monkeypatch):\n        monkeypatch.setenv(\"LINKWATCH_CACHE_DIR\", str(tmp_path))\n        cache.save_results(RESULTS)\n        output = tmp_path / \"status.html\"\n>       result = CliRunner().invoke(cli, [\"report\", \"-o\", str(output)], catch_exceptions=False)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests\\test_report.py:20: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n..\\venv\\Lib\\site-packages\\click\\testing.py:687: in invoke\n    return_value = cli.main(args=args or (), prog_name=prog_name, **extra)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1552: in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:2032: in invoke\n    return _process_result(sub_ctx.command.invoke(sub_ctx))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1415: in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:910: in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nlinkwatch\\cli.py:56: in report\n    from .report import render_report\nlinkwatch\\report.py:3: in <module>\n    from jinja2 import Environment, FileSystemLoader, select_autoescape\n..\\venv\\Lib\\site-packages\\jinja2\\__init__.py:12: in <module>\n    from .environment import Environment\n..\\venv\\Lib\\site-packages\\jinja2\\environment.py:25: in <module>\n    from .defaults import BLOCK_END_STRING\n..\\venv\\Lib\\site-packages\\jinja2\\defaults.py:3: in <module>\n    from .filters import FILTERS as DEFAULT_FILTERS  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    # -*- coding: utf-8 -*-\n    \"\"\"Built-in template filters used with the ``|`` operator.\"\"\"\n    import math\n    import random\n    import re\n    import warnings\n    from collections import namedtuple\n    from itertools import chain\n    from itertools import groupby\n    \n    from markupsafe import escape\n    from markupsafe import Markup\n>   from markupsafe import soft_unicode\nE   ImportError: cannot import name 'soft_unicode' from 'markupsafe' (<tmp>\\venv\\Lib\\site-packages\\markupsafe\\__init__.py)\n\n..\\venv\\Lib\\site-packages\\jinja2\\filters.py:13: ImportError\n============================== warnings summary ===============================\nlinkwatch\\resources.py:1\n  <tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html\n    import pkg_resources\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/test_report.py::test_report_renders_all_sites - ImportError: can...\n1 failed, 9 passed, 1 warning in 8.74s\n",
+      "exit_code": 1
+    },
+    "proposed": {
+      "label": "proposed",
+      "workdir": "<tmp>",
+      "steps": [
+        {
+          "command": [
+            "<python>",
+            "-m",
+            "venv",
+            "<tmp>\\venv"
+          ],
+          "exit_code": 0,
+          "output": ""
+        },
+        {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "install",
+            "-q",
+            "--disable-pip-version-check",
+            "-r",
+            "requirements-dev.txt",
+            "-r",
+            "requirements.txt"
+          ],
+          "exit_code": 0,
+          "output": ""
+        },
+        {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "exit_code": 0,
+          "output": "No broken requirements found.\n"
+        },
+        {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "--junitxml=<tmp>\\junit.xml"
+          ],
+          "exit_code": 4,
+          "output": "ImportError while loading conftest '<tmp>\\repo\\tests\\conftest.py'.\ntests\\conftest.py:8: in <module>\n    import linkwatch.cli  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^\nlinkwatch\\cli.py:6: in <module>\n    from . import __version__, cache, checker, config, resources\nlinkwatch\\resources.py:1: in <module>\n    import pkg_resources\nE   ModuleNotFoundError: No module named 'pkg_resources'\n"
+        }
+      ],
+      "status": "failed",
+      "tests": {},
+      "pip_check": {
+        "command": [
+          "<tmp>\\venv\\Scripts\\python.exe",
+          "-m",
+          "pip",
+          "check"
+        ],
+        "exit_code": 0,
+        "output": "No broken requirements found.\n"
+      },
+      "resolved": {
+        "annotated-types": "0.8.0",
+        "appdirs": "1.4.4",
+        "certifi": "2026.7.22",
+        "chardet": "5.2.0",
+        "charset-normalizer": "3.5.2",
+        "click": "8.5.0",
+        "colorama": "0.4.6",
+        "idna": "2.7",
+        "iniconfig": "2.3.1",
+        "jinja2": "3.1.6",
+        "markdown-it-py": "4.2.0",
+        "markupsafe": "3.0.4",
+        "mdurl": "0.1.2",
+        "nose": "1.3.7",
+        "packaging": "26.3",
+        "pip": "25.0.1",
+        "pluggy": "1.6.0",
+        "pydantic": "2.14.1",
+        "pydantic-core": "2.50.1",
+        "pygments": "2.21.0",
+        "pytest": "9.1.1",
+        "python-dateutil": "2.9.0.post0",
+        "requests": "2.31.0",
+        "rich": "15.0.0",
+        "setuptools": "84.0.0",
+        "six": "1.17.0",
+        "toml": "0.10.2",
+        "typing-extensions": "4.16.0",
+        "typing-inspection": "0.4.4",
+        "urllib3": "2.8.0"
+      },
+      "output": "ImportError while loading conftest '<tmp>\\repo\\tests\\conftest.py'.\ntests\\conftest.py:8: in <module>\n    import linkwatch.cli  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^\nlinkwatch\\cli.py:6: in <module>\n    from . import __version__, cache, checker, config, resources\nlinkwatch\\resources.py:1: in <module>\n    import pkg_resources\nE   ModuleNotFoundError: No module named 'pkg_resources'\n",
+      "exit_code": 4
+    },
+    "comparison": {
+      "baseline_status": "failed",
+      "proposed_status": "failed",
+      "note": "proposed run produced no per-test results (e.g. collection/import error): 'regressed' lists every baseline-passing test",
+      "fixed": [],
+      "regressed": [
+        "tests.test_cache::test_cache_round_trip",
+        "tests.test_checker::test_closed_port_is_down",
+        "tests.test_checker::test_latin1_title",
+        "tests.test_checker::test_missing_is_down",
+        "tests.test_checker::test_ok_is_up",
+        "tests.test_checker::test_redirect_is_up",
+        "tests.test_checker::test_slow_is_up",
+        "tests.test_checker::test_user_agent",
+        "tests.test_config::test_sites_file_loads"
+      ],
+      "baseline_counts": {
+        "passed": 9,
+        "failed": 1,
+        "skipped": 0
+      },
+      "proposed_counts": {
+        "passed": 0,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "compatibility_gaps": [
+    "[observed] requirements.txt pins 1.10.13 but pyproject.toml requires '>=2'",
+    "[observed] private API import requests.utils._parse_content_type_header at linkwatch/encoding.py:5",
+    "[observed] rejected AI edit for pyproject.toml: edit would make pyproject.toml invalid TOML: Unclosed array (at line 17, column 5)",
+    "[observed] rejected AI edit for pyproject.toml: edit would make pyproject.toml invalid TOML: Unclosed array (at line 22, column 5)",
+    "[observed] proposed change regressed tests: ['tests.test_cache::test_cache_round_trip', 'tests.test_checker::test_closed_port_is_down', 'tests.test_checker::test_latin1_title', 'tests.test_checker::test_missing_is_down', 'tests.test_checker::test_ok_is_up', 'tests.test_checker::test_redirect_is_up', 'tests.test_checker::test_slow_is_up', 'tests.test_checker::test_user_agent', 'tests.test_config::test_sites_file_loads']",
+    "[AI-claimed, unverified] requirements.txt pins 2.11.3 but pyproject.toml requires '>=2'",
+    "[AI-claimed, unverified] requirements.txt pins 75.8.0 but pyproject.toml requires '>=60'",
+    "[AI-claimed, unverified] requirements.txt pins 1.10.13 but pyproject.toml requires '>=2'"
+  ],
+  "model": {
+    "available": true,
+    "model": "gemma4:e2b",
+    "runtime": "Ollama",
+    "runtime_version": "0.40.4",
+    "family": "gemma4",
+    "parameter_size": "4.6B",
+    "quantization": "Q4_K_M",
+    "access": "local HTTP API http://127.0.0.1:11434 (no cloud)",
+    "source": "https://ollama.com/library/gemma4",
+    "license_excerpt": "Apache License Version 2.0, January 2004 http://www.apache.org/licenses/ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION 1. Definitions. \"License\" shall mean the terms and conditions for "
+  },
+  "limitations": [
+    "Maintenance activity / release recency was not checked (no package-index metadata queried).",
+    "Vulnerability scanning is intentionally out of scope.",
+    "Verification uses a throwaway venv and copied tree, not a container; target code runs as the current user.",
+    "AI recommendations are model output and are not facts; only 'executed_tests' reflect real runs."
+  ]
+}

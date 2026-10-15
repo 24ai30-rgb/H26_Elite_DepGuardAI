@@ -1,3 +1,5 @@
+> **Hacktoberfest 2026 Track 1:** this repo also contains **DepGuard AI** (`depguard/`), a dependency-resilience tool powered by local Gemma 4. See [depguard/README.md](depguard/README.md).
+
 <div align="center">
 
 # 🔭 linkwatch
