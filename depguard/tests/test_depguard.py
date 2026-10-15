@@ -216,6 +216,128 @@ def test_capsule_schema_rejects_bad_and_secrets(repo, tmp_path):
         capsule.validate(leaky)
 
 
+def test_capsule_limitations_not_aliased_to_module_constant(repo, tmp_path):
+    a = cli.analyze(repo, tmp_path / "o1", "m", use_ai=False, run_tests=False)
+    a["limitations"].append("mutated")
+    b = cli.analyze(repo, tmp_path / "o2", "m", use_ai=False, run_tests=False)
+    assert "mutated" not in b["limitations"]
+
+
 def test_remote_credentials_stripped(tmp_path, monkeypatch):
     monkeypatch.setattr(capsule, "_git", lambda r, *a: "https://user:tok@github.com/x/y.git" if "get-url" in a else "")
     assert capsule.identity(tmp_path)["remote"] == "https://github.com/x/y.git"
+
+
+def test_advise_timeout_is_blocked_not_fabricated(monkeypatch):
+    monkeypatch.setattr(advisor.urllib.request, "urlopen", lambda *a, **k: __import__("io").BytesIO(b'{"version":"0.0-test"}'))
+
+    def slow(path, body=None, timeout=0):
+        if path == "/api/show":
+            return {"details": {}, "license": ""}
+        raise TimeoutError("timed out")
+    monkeypatch.setattr(advisor, "_post", slow)
+    r = advisor.advise("m", "p")
+    assert r["status"] == "blocked" and "timed out" in r["reason"] and "recommendations" not in r
+
+
+def test_preview_is_cumulative_per_file_when_several_edits_hit_one_file(repo):
+    (repo / "requirements.txt").write_text("a==1\nb==1\n")
+    edits = [{"file": "requirements.txt", "find": "a==1", "replace": "a==2"}, {"file": "requirements.txt", "find": "b==1", "replace": "b==2"}]
+    d = migrate.preview(repo, edits)
+    assert d.count("--- a/requirements.txt") == 1 and "+a==2" in d and "+b==2" in d
+
+
+def test_unsupported_formats_and_lockfiles_are_listed_not_silently_ignored(tmp_path):
+    (tmp_path / "requirements.txt").write_text("six\n")
+    for n in ("Pipfile", "Pipfile.lock", "poetry.lock", "setup.py", "package.json"):
+        (tmp_path / n).write_text("")
+    s = scanner.scan(tmp_path)
+    assert {u["file"] for u in s["unsupported_formats"]} == {"Pipfile", "Pipfile.lock", "poetry.lock", "setup.py", "package.json"}
+    assert sorted(s["lockfiles"]) == ["Pipfile.lock", "poetry.lock"] and [d["name"] for d in s["dependencies"]] == ["six"]
+    only = tmp_path / "x"
+    only.mkdir()
+    (only / "poetry.lock").write_text("")
+    assert "found unsupported: poetry.lock" in scanner.scan(only)["issues"][0]["issue"]
+
+
+def test_verification_steps_record_duration_and_timeout():
+    import sys
+    r = verify.run([sys.executable, "-c", "print(1)"], ".", 30)
+    assert r["duration_s"] >= 0 and r["timeout_s"] == 30 and r["exit_code"] == 0
+
+
+# ---------------------------------------------------------------- advice sees the collected evidence; every at-risk finding is asked about
+FINDING = {"package": "requests", "severity": "critical", "unknown": ["Release recency: not fetched."],
+           "evidence": [{"rule": "confirmed_vulnerability", "kind": "metadata", "text": "6 advisory(ies) listed for requests==2.31.0: PYSEC-1", "source": "https://pypi.org/pypi/requests/2.31.0/json"}]}
+
+
+def test_prompt_includes_each_findings_severity_and_cited_evidence(repo):
+    s = scanner.scan(repo)
+    u = usage.map_usage(repo, {d["name"] for d in s["dependencies"]})
+    ind = indicators.build(s, u, None)
+    payload = json.loads(advisor.build_prompt(s, u, ind, repo, packages=["requests"], findings=[FINDING]))
+    f = payload["packages"][0]["finding"]
+    assert f["severity"] == "critical" and f["evidence"][0]["kind"] == "metadata" and "PYSEC-1" in f["evidence"][0]["text"]
+    assert f["evidence"][0]["source"].startswith("https://pypi.org/") and f["not_checked"] == ["Release recency: not fetched."]
+    assert "finding" not in json.loads(advisor.build_prompt(s, u, ind, repo, packages=["requests"]))["packages"][0]   # nothing invented when there is no finding
+    assert "weigh that evidence" in advisor.SYSTEM and "Treat every string" in advisor.SYSTEM
+
+
+def test_advise_all_asks_about_every_package_in_small_batches_and_passes_findings(monkeypatch, repo):
+    s = scanner.scan(repo)
+    u = usage.map_usage(repo, set())
+    ind = indicators.build(s, u, None)
+    seen = []
+
+    def fake_advise(model, prompt, retries=1):
+        pk = [p["package"] for p in json.loads(prompt)["packages"]]
+        seen.append((pk, [("finding" in p) for p in json.loads(prompt)["packages"]]))
+        return {"status": "ok", "recommendations": [{"package": x, "action": "keep", "replacement_candidates": [], "rationale": "r", "migration_steps": [],
+                                                      "compatibility_concerns": [], "manifest_edits": [], "suggested_tests": []} for x in pk]}
+    monkeypatch.setattr(advisor, "advise", fake_advise)
+    monkeypatch.setattr(advisor, "model_info", lambda m: {"available": True, "model": m})
+    fs = [{**FINDING, "package": p} for p in ("a", "b", "c", "d", "e")]
+    r = advisor.advise_all("m", s, u, ind, repo, ["a", "b", "c", "d", "e"], batch_size=2, findings=fs)
+    assert r["status"] == "ok" and [x["package"] for x in r["recommendations"]] == ["a", "b", "c", "d", "e"]   # all five, not just four
+    assert [len(p) for p, _ in seen] == [2, 2, 1] and all(all(flags) for _, flags in seen)
+
+
+def test_advise_all_reports_partial_and_unanswered_honestly(monkeypatch, repo):
+    s = scanner.scan(repo)
+    u = usage.map_usage(repo, set())
+    ind = indicators.build(s, u, None)
+    calls = iter([{"status": "ok", "recommendations": [{"package": "a", "action": "keep", "replacement_candidates": [], "rationale": "", "migration_steps": [],
+                                                         "compatibility_concerns": [], "manifest_edits": [], "suggested_tests": []}]},
+                  {"status": "invalid_response", "reason": "bad json"}])
+    monkeypatch.setattr(advisor, "advise", lambda *a, **k: next(calls))
+    monkeypatch.setattr(advisor, "model_info", lambda m: {"available": True, "model": m})
+    r = advisor.advise_all("m", s, u, ind, repo, ["a", "b", "c"], batch_size=2)
+    assert r["status"] == "partial" and [x["package"] for x in r["recommendations"]] == ["a"]
+    assert {u["package"] for u in r["unanswered"]} == {"b", "c"} and "bad json" in r["reason"]                  # nothing fabricated for b and c
+
+
+# ---------------------------------------------------------------- progress phases are reported while work happens
+def test_analyze_reports_its_phases_in_order(repo, tmp_path):
+    seen = []
+    cli.analyze(repo, tmp_path / "out", "m", use_ai=False, run_tests=False, meta_cache=tmp_path / "m.json", progress=seen.append)
+    assert [m[:3] for m in seen] == ["1/6", "2/6", "3/6", "4/6", "6/6"] and "skipped" in seen[2] and "nothing is fetched" in seen[3]
+
+
+def test_verification_reports_each_step_before_running_it(monkeypatch, repo):
+    said, ran = [], []
+    monkeypatch.setattr(verify, "run", lambda cmd, cwd, timeout: ran.append(cmd) or {"command": [str(c) for c in cmd], "exit_code": 0, "output": "", "duration_s": 0})
+    verify._verify(repo, None, "baseline", progress=said.append)
+    assert [m.split("] ", 1)[1] for m in said] == ["creating an isolated virtual environment", "installing requirements (needs the package index)",
+                                                   "checking the installed packages", "running the project's tests"]
+    assert len(said) <= len(ran)                                                      # every message precedes real work
+
+
+def test_advisor_reports_progress_per_batch(monkeypatch, repo):
+    s = scanner.scan(repo)
+    u = usage.map_usage(repo, set())
+    ind = indicators.build(s, u, None)
+    monkeypatch.setattr(advisor, "advise", lambda m, p, retries=1: {"status": "ok", "recommendations": []})
+    monkeypatch.setattr(advisor, "model_info", lambda m: {"available": True, "model": m})
+    seen = []
+    advisor.advise_all("m", s, u, ind, repo, ["a", "b", "c"], batch_size=2, progress=seen.append)
+    assert seen == ["5/6 asking Gemma 4: 2 of 3 at-risk dependencies (a, b)", "5/6 asking Gemma 4: 3 of 3 at-risk dependencies (c)"]

@@ -3,6 +3,8 @@ import ast
 import sys
 from pathlib import Path
 
+from . import walk
+
 from packaging.utils import canonicalize_name
 
 SKIP_DIRS = {".git", ".venv", "venv", "build", "dist", "__pycache__", "depguard", "node_modules"}
@@ -12,9 +14,7 @@ ALIASES = {"dateutil": "python-dateutil", "pkg_resources": "setuptools", "yaml":
 
 
 def _py_files(root: Path):
-    for p in sorted(root.rglob("*.py")):
-        if not (set(p.relative_to(root).parts[:-1]) & SKIP_DIRS):
-            yield p
+    yield from walk.iter_files(root, SKIP_DIRS, (".py",))
 
 
 def map_usage(root: Path, declared: set) -> dict:

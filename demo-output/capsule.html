@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DepGuard capsule: LinkWatch</title><style>body{font:14px/1.5 system-ui,Segoe UI,sans-serif;background:#0b0d10;color:#e6e9ed;margin:0;padding:24px;max-width:1040px;margin:auto}
+h1{font-size:22px}h2{font-size:17px;margin-top:30px;border-bottom:1px solid #222932;padding-bottom:6px}h3{font-size:14px}
+table{border-collapse:collapse;width:100%;margin:8px 0}th,td{border:1px solid #222932;padding:6px 10px;text-align:left;vertical-align:top}th{background:#11151a}
+pre{background:#0f1318;border:1px solid #222932;padding:10px;overflow:auto;white-space:pre-wrap}code{font-family:ui-monospace,Consolas,monospace}
+.tag{font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.obs{color:#58a6ff;background:#0f1b2b;border:1px solid #1f3d63}.ai{color:#b392f0;background:#1a1530;border:1px solid #43386a}
+.ver{color:#3fb950;background:#12251a;border:1px solid #24502f}.unk{color:#8b95a1;border:1px solid #2d3540}
+.box{border:1px solid #2d3540;border-radius:8px;padding:10px 14px;margin:10px 0}.ai-box{border-color:#43386a;background:#15112a}.add{color:#9be2a8}.del{color:#ffb3af}
+a{color:#7c9cff}@media print{body{background:#fff;color:#000}.tag{border:1px solid #000;color:#000;background:#fff}}</style></head><body><h1>Dependency Exit Capsule: LinkWatch</h1>
+<p>Generated 2026-10-15T07:25:41+00:00 · commit <code>f52f3930c8e7c33d934ccf614955a38e26984bd5</code> · remote https://github.com/rishrek/LinkWatch.git · dirty: True</p>
+<div class="box">Legend: <span class="tag obs">Observed fact</span> <span class="tag ai">AI-generated, unverified</span> <span class="tag ver">Verified by execution</span> <span class="tag unk">Unknown / not checked</span></div>
+<h2>Health score <span class="tag obs">Observed fact</span></h2><div class='box'><b>92/100</b> — heuristic. Evidence coverage 75%. Heuristic score from the evidence listed below. It is not an objective measure of safety or quality, excludes vulnerabilities, and unchecked data is not counted against any package.</div>
+<table><tr><th>Package</th><th>Score</th><th>Deductions</th></tr><tr><td>jinja2</td><td>65</td><td>-35 observed_in_baseline_output <small>(observed)</small></td></tr><tr><td>setuptools</td><td>65</td><td>-35 observed_in_baseline_output <small>(observed)</small></td></tr><tr><td>pydantic</td><td>80</td><td>-20 conflicting_constraints <small>(observed)</small></td></tr><tr><td>requests</td><td>90</td><td>-10 private_api_import <small>(observed)</small></td></tr><tr><td>idna</td><td>95</td><td>-5 no_static_import_found <small>(heuristic)</small></td></tr><tr><td>nose</td><td>95</td><td>-5 no_static_import_found <small>(heuristic)</small></td></tr><tr><td>six</td><td>95</td><td>-5 no_static_import_found <small>(heuristic)</small></td></tr><tr><td>appdirs</td><td>100</td><td>no deductions</td></tr><tr><td>chardet</td><td>100</td><td>no deductions</td></tr><tr><td>click</td><td>100</td><td>no deductions</td></tr><tr><td>pytest</td><td>100</td><td>no deductions</td></tr><tr><td>python-dateutil</td><td>100</td><td>no deductions</td></tr><tr><td>rich</td><td>100</td><td>no deductions</td></tr><tr><td>toml</td><td>100</td><td>no deductions</td></tr></table>
+<h3>Unchecked (never counted against a package)</h3><ul><li>package index metadata (release recency, Requires-Python, classifiers): not fetched for 14 of 14 packages (needs network and an explicit request)</li><li>repository activity (commits, issues, maintainers): never checked by DepGuard</li><li>security vulnerabilities: out of scope</li></ul>
+<h2>Dependencies <span class="tag obs">Observed fact</span></h2><p>Manifests: requirements-dev.txt, requirements.txt, pyproject.toml · requires-python &gt;=3.10</p>
+<table><tr><th>Package</th><th>Declared</th><th>Resolved (test env)</th></tr><tr><td>pytest</td><td><code>-</code> requirements-dev.txt:1</td><td>9.1.1</td></tr><tr><td>nose</td><td><code>==1.3.7</code> requirements-dev.txt:2</td><td>1.3.7</td></tr><tr><td>toml</td><td><code>==0.10.2</code> requirements.txt:1</td><td>0.10.2</td></tr><tr><td>appdirs</td><td><code>==1.4.4</code> requirements.txt:2</td><td>1.4.4</td></tr><tr><td>requests</td><td><code>==2.31.0</code> requirements.txt:3</td><td>2.31.0</td></tr><tr><td>jinja2</td><td><code>==2.11.3</code> requirements.txt:4</td><td>2.11.3</td></tr><tr><td>pydantic</td><td><code>==1.10.13</code> requirements.txt:5</td><td>1.10.13</td></tr><tr><td>click</td><td><code>&gt;=7</code> requirements.txt:6</td><td>8.5.0</td></tr><tr><td>six</td><td><code>-</code> requirements.txt:7</td><td>1.17.0</td></tr><tr><td>chardet</td><td><code>==5.2.0</code> requirements.txt:8</td><td>5.2.0</td></tr><tr><td>setuptools</td><td><code>==75.8.0</code> requirements.txt:9</td><td>75.8.0</td></tr><tr><td>idna</td><td><code>==2.7</code> requirements.txt:10</td><td>2.7</td></tr><tr><td>python-dateutil</td><td><code>-</code> requirements.txt:11</td><td>2.9.0.post0</td></tr><tr><td>rich</td><td><code>-</code> requirements.txt:12</td><td>15.0.0</td></tr><tr><td>toml</td><td><code>==0.10.2</code> pyproject.toml:13</td><td>0.10.2</td></tr><tr><td>appdirs</td><td><code>==1.4.4</code> pyproject.toml:14</td><td>1.4.4</td></tr><tr><td>requests</td><td><code>==2.31.0</code> pyproject.toml:15</td><td>2.31.0</td></tr><tr><td>jinja2</td><td><code>==2.11.3</code> pyproject.toml:16</td><td>2.11.3</td></tr><tr><td>pydantic</td><td><code>&gt;=2</code> pyproject.toml:17</td><td>1.10.13</td></tr><tr><td>click</td><td><code>&gt;=7</code> pyproject.toml:18</td><td>8.5.0</td></tr><tr><td>six</td><td><code>-</code> pyproject.toml:19</td><td>1.17.0</td></tr><tr><td>chardet</td><td><code>==5.2.0</code> pyproject.toml:20</td><td>5.2.0</td></tr><tr><td>setuptools</td><td><code>==75.8.0</code> pyproject.toml:21</td><td>75.8.0</td></tr><tr><td>idna</td><td><code>==2.7</code> pyproject.toml:22</td><td>2.7</td></tr><tr><td>python-dateutil</td><td><code>-</code> pyproject.toml:23</td><td>2.9.0.post0</td></tr><tr><td>rich</td><td><code>-</code> pyproject.toml:24</td><td>15.0.0</td></tr></table>
+<p>Maintenance activity and release recency: not checked (no package metadata was fetched). <span class="tag unk">Unknown / not checked</span></p>
+<h2>Evidence</h2><ul>
+<li><b>pydantic</b> conflicting_constraints (warn): requirements.txt pins 1.10.13 but pyproject.toml requires &#x27;&gt;=2&#x27;</li>
+<li><b>certifi</b> imported_but_undeclared (warn): linkwatch/checker.py:4</li>
+<li><b>requests</b> private_api_import (warn): linkwatch/encoding.py:5 imports requests.utils._parse_content_type_header</li>
+<li><b>jinja2</b> observed_in_baseline_output (high): E   ImportError: cannot import name &#x27;soft_unicode&#x27; from &#x27;markupsafe&#x27; (&lt;tmp&gt;\venv\Lib\site-packages\markupsafe\__init__.py); ..\venv\Lib\site-packages\jinja2\filters.py:13: ImportError</li>
+<li><b>setuptools</b> observed_in_baseline_output (high): &lt;tmp&gt;\repo\linkwatch\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html</li>
+</ul>
+<h3>Usage <span class="tag obs">Observed fact</span></h3><ul><li>Undeclared imports: certifi</li><li>No static import found (heuristic, NOT proof of non-use): idna, nose, six <span class="tag unk">Unknown / not checked</span></li><li>Dynamic import sites: 0</li></ul>
+<p><code>appdirs</code>: linkwatch/cache.py:4</p>
+<p><code>certifi</code>: linkwatch/checker.py:4</p>
+<p><code>requests</code>: linkwatch/checker.py:5, linkwatch/checker.py:6, linkwatch/encoding.py:5, linkwatch/http_patch.py:1</p>
+<p><code>click</code>: linkwatch/cli.py:1, tests/test_report.py:1</p>
+<p><code>rich</code>: linkwatch/cli.py:2, linkwatch/cli.py:3, linkwatch/cli.py:4</p>
+<p><code>toml</code>: linkwatch/config.py:3</p>
+<p><code>pydantic</code>: linkwatch/config.py:4</p>
+<p><code>python-dateutil</code>: linkwatch/dates.py:1</p>
+<p><code>chardet</code>: linkwatch/encoding.py:4</p>
+<p><code>jinja2</code>: linkwatch/report.py:3</p>
+<p><code>setuptools</code>: linkwatch/resources.py:1</p>
+<p><code>pytest</code>: tests/conftest.py:6</p>
+<h2>AI recommendations <span class="tag ai">AI-generated, unverified</span></h2><div class='box ai-box'>Generated by gemma4:e2b (local). Suggestions only: not facts, no confidence scores are supplied. Status: <b>ok</b> </div>
+<h3>jinja2: upgrade</h3><p>Observed ImportError suggests incompatibility issues with markupsafe. Upgrading is recommended.</p><p>Candidates: Jinja2&gt;=2.0</p><ol><li>manifest_edits</li><li>find&quot;: &quot;Jinja2==2.11.3&quot;</li><li>file&quot;: &quot;requirements.txt&quot;</li></ol><ul><li>concern (model-claimed): requirements.txt pins 2.11.3 but pyproject.toml requires &#x27;&gt;=2&#x27;</li></ul>
+<h3>setuptools: upgrade</h3><p>Observed DeprecationWarning regarding pkg_resources, indicating an upgrade is beneficial.</p><p>Candidates: setuptools&gt;=60</p><ol><li>manifest_edits</li><li>find&quot;: &quot;setuptools==75.8.0&quot;</li><li>file&quot;: &quot;requirements.txt&quot;</li></ol><ul><li>concern (model-claimed): requirements.txt pins 75.8.0 but pyproject.toml requires &#x27;&gt;=60&#x27;</li></ul>
+<h3>certifi: investigate</h3><p>The package is imported but not declared in dependencies. Its necessity and version status are unknown.</p><p>Candidates: -</p><ol></ol><ul></ul>
+<h3>pydantic: upgrade</h3><p>There is a conflict between the pinned version (1.10.13) in requirements.txt and the requirement (&gt;=2) in pyproject.toml. Upgrading to satisfy the modern requirement is necessary.</p><p>Candidates: pydantic&gt;=2</p><ol><li>manifest_edits</li><li>find&quot;: &quot;pydantic==1.10.13&quot;</li><li>file&quot;: &quot;requirements.txt&quot;</li></ol><ul><li>concern (model-claimed): requirements.txt pins 1.10.13 but pyproject.toml requires &#x27;&gt;=2&#x27;</li></ul>
+<h2>Migration proposal (not applied) <span class="tag ai">AI-generated, unverified</span></h2><pre>--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,7 +1,7 @@
+ toml==0.10.2
+ appdirs==1.4.4
+ requests==2.31.0
+<span class="del">-Jinja2==2.11.3</span>
+<span class="add">+Jinja2&gt;=2.0</span>
+ pydantic==1.10.13
+ click&gt;=7
+ six
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -6,7 +6,7 @@
+ click&gt;=7
+ six
+ chardet==5.2.0
+<span class="del">-setuptools==75.8.0</span>
+<span class="add">+setuptools&gt;=60</span>
+ idna==2.7
+ python-dateutil
+ rich
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -2,7 +2,7 @@
+ appdirs==1.4.4
+ requests==2.31.0
+ Jinja2==2.11.3
+<span class="del">-pydantic==1.10.13</span>
+<span class="add">+pydantic&gt;=2</span>
+ click&gt;=7
+ six
+ chardet==5.2.0</pre>
+<ul><li>rejected edit pyproject.toml: edit would make pyproject.toml invalid TOML: Unclosed array (at line 17, column 5)</li><li>rejected edit pyproject.toml: edit would make pyproject.toml invalid TOML: Unclosed array (at line 22, column 5)</li></ul>
+<h2>Executed tests</h2>
+<h3>Baseline <span class="tag ver">Verified by execution</span></h3><p>Status <b>failed</b>, pytest exit 1. Tests: 9 passed, 1 failed, 0 skipped.</p><p>Environment details were not recorded for this run.</p><table><tr><th>Command</th><th>Exit</th></tr><tr><td><code>&lt;python&gt; -m venv &lt;tmp&gt;\venv</code></td><td>0</td></tr><tr><td><code>-r requirements-dev.txt -r requirements.txt</code></td><td>0</td></tr><tr><td><code>&lt;tmp&gt;\venv\Scripts\python.exe -m pip check</code></td><td>0</td></tr><tr><td><code>-q -p no:cacheprovider --junitxml=&lt;tmp&gt;\junit.xml</code></td><td>1</td></tr></table>
+<h3>AI-proposed edits <span class="tag ver">Verified by execution</span></h3><p>Status <b>failed</b>, pytest exit 4. Tests: 0 passed, 0 failed, 0 skipped.</p><p>Environment details were not recorded for this run.</p><table><tr><th>Command</th><th>Exit</th></tr><tr><td><code>&lt;python&gt; -m venv &lt;tmp&gt;\venv</code></td><td>0</td></tr><tr><td><code>-r requirements-dev.txt -r requirements.txt</code></td><td>0</td></tr><tr><td><code>&lt;tmp&gt;\venv\Scripts\python.exe -m pip check</code></td><td>0</td></tr><tr><td><code>-q -p no:cacheprovider --junitxml=&lt;tmp&gt;\junit.xml</code></td><td>4</td></tr></table>
+<h2>Independent experiment: jinja2-only</h2><div class='box'>Provenance: human-specified experiment, independent of the Gemma recommendation. Not AI-generated. Passing tests do not prove full compatibility.</div>
+<pre>--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,7 +1,7 @@
+ toml==0.10.2
+ appdirs==1.4.4
+ requests==2.31.0
+<span class="del">-Jinja2==2.11.3</span>
+<span class="add">+Jinja2==3.1.6</span>
+ pydantic==1.10.13
+ click&gt;=7
+ six
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -13,7 +13,7 @@
+     &quot;toml==0.10.2&quot;,
+     &quot;appdirs==1.4.4&quot;,
+     &quot;requests==2.31.0&quot;,
+<span class="del">-    &quot;Jinja2==2.11.3&quot;,</span>
+<span class="add">+    &quot;Jinja2==3.1.6&quot;,</span>
+     &quot;pydantic&gt;=2&quot;,
+     &quot;click&gt;=7&quot;,
+     &quot;six&quot;,</pre>
+<h3>Experiment baseline <span class="tag ver">Verified by execution</span></h3><p>Status <b>failed</b>, pytest exit 1. Tests: 9 passed, 1 failed, 0 skipped.</p><p>Environment details were not recorded for this run.</p><table><tr><th>Command</th><th>Exit</th></tr><tr><td><code>&lt;python&gt; -m venv &lt;tmp&gt;\venv</code></td><td>0</td></tr><tr><td><code>-r requirements-dev.txt -r requirements.txt</code></td><td>0</td></tr><tr><td><code>&lt;tmp&gt;\venv\Scripts\python.exe -m pip check</code></td><td>0</td></tr><tr><td><code>-q -p no:cacheprovider --junitxml=&lt;tmp&gt;\junit.xml</code></td><td>1</td></tr></table>
+<h3>Experiment proposed <span class="tag ver">Verified by execution</span></h3><p>Status <b>passed</b>, pytest exit 0. Tests: 10 passed, 0 failed, 0 skipped.</p><p>Environment details were not recorded for this run.</p><table><tr><th>Command</th><th>Exit</th></tr><tr><td><code>&lt;python&gt; -m venv &lt;tmp&gt;\venv</code></td><td>0</td></tr><tr><td><code>-r requirements-dev.txt -r requirements.txt</code></td><td>0</td></tr><tr><td><code>&lt;tmp&gt;\venv\Scripts\python.exe -m pip check</code></td><td>0</td></tr><tr><td><code>-q -p no:cacheprovider --junitxml=&lt;tmp&gt;\junit.xml</code></td><td>0</td></tr></table>
+<p>Comparison: <code>{&quot;baseline_status&quot;: &quot;failed&quot;, &quot;proposed_status&quot;: &quot;passed&quot;, &quot;note&quot;: null, &quot;fixed&quot;: [&quot;tests.test_report::test_report_renders_all_sites&quot;], &quot;regressed&quot;: [], &quot;baseline_counts&quot;: {&quot;passed&quot;: 9, &quot;failed&quot;: 1, &quot;skipped&quot;: 0}, &quot;proposed_counts&quot;: {&quot;passed&quot;: 10, &quot;failed&quot;: 0, &quot;skipped&quot;: 0}}</code></p>
+<h2>Compatibility gaps</h2><ul><li>[observed] requirements.txt pins 1.10.13 but pyproject.toml requires &#x27;&gt;=2&#x27;</li><li>[observed] private API import requests.utils._parse_content_type_header at linkwatch/encoding.py:5</li><li>[observed] rejected AI edit for pyproject.toml: edit would make pyproject.toml invalid TOML: Unclosed array (at line 17, column 5)</li><li>[observed] rejected AI edit for pyproject.toml: edit would make pyproject.toml invalid TOML: Unclosed array (at line 22, column 5)</li><li>[observed] proposed change regressed tests: [&#x27;tests.test_cache::test_cache_round_trip&#x27;, &#x27;tests.test_checker::test_closed_port_is_down&#x27;, &#x27;tests.test_checker::test_latin1_title&#x27;, &#x27;tests.test_checker::test_missing_is_down&#x27;, &#x27;tests.test_checker::test_ok_is_up&#x27;, &#x27;tests.test_checker::test_redirect_is_up&#x27;, &#x27;tests.test_checker::test_slow_is_up&#x27;, &#x27;tests.test_checker::test_user_agent&#x27;, &#x27;tests.test_config::test_sites_file_loads&#x27;]</li><li>[AI-claimed, unverified] requirements.txt pins 2.11.3 but pyproject.toml requires &#x27;&gt;=2&#x27;</li><li>[AI-claimed, unverified] requirements.txt pins 75.8.0 but pyproject.toml requires &#x27;&gt;=60&#x27;</li><li>[AI-claimed, unverified] requirements.txt pins 1.10.13 but pyproject.toml requires &#x27;&gt;=2&#x27;</li></ul>
+<h2>Limitations</h2><ul><li>Maintenance activity / release recency was not checked (no package-index metadata queried).</li><li>Vulnerability scanning is intentionally out of scope.</li><li>Verification uses a throwaway venv and copied tree, not a container; target code runs as the current user.</li><li>AI recommendations are model output and are not facts; only &#x27;executed_tests&#x27; reflect real runs.</li><li>Static AST analysis only; imports inside strings, plugins, entry points or dynamic import calls are not resolved.</li><li>&#x27;no_import_found&#x27; means no static import was seen; it does NOT prove the package is unused (transitive, runtime or tooling use is possible).</li><li>Import-name to distribution mapping uses a small static alias table; unusual mappings may be misreported as undeclared.</li></ul></body></html>

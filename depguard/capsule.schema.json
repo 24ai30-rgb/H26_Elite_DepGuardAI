@@ -2,45 +2,467 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "DepGuard Dependency Exit Capsule",
   "type": "object",
-  "required": ["capsule_version", "generated_at", "repository", "dependencies", "risk_evidence", "usage",
-               "ai_recommendations", "migration_proposal", "suggested_tests", "executed_tests",
-               "compatibility_gaps", "model", "limitations"],
+  "required": [
+    "capsule_version",
+    "generated_at",
+    "repository",
+    "dependencies",
+    "risk_evidence",
+    "usage",
+    "ai_recommendations",
+    "migration_proposal",
+    "suggested_tests",
+    "executed_tests",
+    "compatibility_gaps",
+    "model",
+    "limitations"
+  ],
   "properties": {
-    "capsule_version": {"const": "1"},
-    "generated_at": {"type": "string", "format": "date-time"},
-    "repository": {"type": "object", "required": ["path_name", "remote", "commit", "dirty"],
-      "properties": {"path_name": {"type": "string"}, "remote": {"type": ["string", "null"]},
-                     "commit": {"type": ["string", "null"]}, "dirty": {"type": ["boolean", "null"]}}},
-    "dependencies": {"type": "object", "description": "OBSERVED manifest facts",
-      "required": ["manifests", "python_requires", "items", "parse_issues"],
-      "properties": {"manifests": {"type": "array", "items": {"type": "string"}},
-                     "python_requires": {"type": ["string", "null"]},
-                     "parse_issues": {"type": "array"},
-                     "items": {"type": "array", "items": {"type": "object",
-                       "required": ["name", "specifier", "pinned_version", "resolved_version", "file", "line"],
-                       "properties": {"resolved_version": {"type": ["string", "null"]}}}}}},
-    "risk_evidence": {"type": "object", "description": "OBSERVED, rule-based indicators",
-      "required": ["indicators", "package_levels"]},
-    "usage": {"type": "object",
-      "required": ["usages", "undeclared_imports", "no_import_found", "dynamic_import_sites", "limitations"]},
-    "ai_recommendations": {"type": "object", "description": "MODEL OUTPUT, not verified fact", "required": ["status"],
-      "properties": {"status": {"enum": ["ok", "blocked", "invalid_response", "not_requested"]},
-                     "reason": {"type": "string"},
-                     "recommendations": {"type": "array"}}},
-    "migration_proposal": {"type": "object", "required": ["status", "accepted_edits", "rejected_edits", "diff"],
-      "properties": {"status": {"enum": ["proposed", "none"]}, "accepted_edits": {"type": "array"},
-                     "rejected_edits": {"type": "array"}, "diff": {"type": "string"}}},
-    "suggested_tests": {"type": "array", "items": {"type": "string"},
-      "description": "MODEL suggestions, not executed"},
-    "executed_tests": {"type": "object", "description": "ACTUALLY RUN commands and results",
-      "required": ["baseline", "proposed", "comparison"],
-      "properties": {"baseline": {"$ref": "#/$defs/run"}, "proposed": {"$ref": "#/$defs/run"},
-                     "comparison": {"type": ["object", "null"]}}},
-    "compatibility_gaps": {"type": "array", "items": {"type": "string"}},
-    "model": {"type": "object", "required": ["available", "model"]},
-    "limitations": {"type": "array", "items": {"type": "string"}}
+    "capsule_version": {
+      "const": "1"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "repository": {
+      "type": "object",
+      "required": [
+        "path_name",
+        "remote",
+        "commit",
+        "dirty"
+      ],
+      "properties": {
+        "path_name": {
+          "type": "string"
+        },
+        "remote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dirty": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "OBSERVED manifest facts",
+      "required": [
+        "manifests",
+        "python_requires",
+        "items",
+        "parse_issues"
+      ],
+      "properties": {
+        "manifests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "python_requires": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parse_issues": {
+          "type": "array"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "specifier",
+              "pinned_version",
+              "resolved_version",
+              "file",
+              "line"
+            ],
+            "properties": {
+              "resolved_version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "risk_evidence": {
+      "type": "object",
+      "description": "OBSERVED, rule-based indicators",
+      "required": [
+        "indicators",
+        "package_levels"
+      ]
+    },
+    "usage": {
+      "type": "object",
+      "required": [
+        "usages",
+        "undeclared_imports",
+        "no_import_found",
+        "dynamic_import_sites",
+        "limitations"
+      ]
+    },
+    "ai_recommendations": {
+      "type": "object",
+      "description": "MODEL OUTPUT, not verified fact",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "ok",
+            "partial",
+            "blocked",
+            "invalid_response",
+            "not_requested"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "recommendations": {
+          "type": "array"
+        }
+      }
+    },
+    "migration_proposal": {
+      "type": "object",
+      "required": [
+        "status",
+        "accepted_edits",
+        "rejected_edits",
+        "diff"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "proposed",
+            "none"
+          ]
+        },
+        "accepted_edits": {
+          "type": "array"
+        },
+        "rejected_edits": {
+          "type": "array"
+        },
+        "diff": {
+          "type": "string"
+        }
+      }
+    },
+    "suggested_tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "MODEL suggestions, not executed"
+    },
+    "executed_tests": {
+      "type": "object",
+      "description": "ACTUALLY RUN commands and results",
+      "required": [
+        "baseline",
+        "proposed",
+        "comparison"
+      ],
+      "properties": {
+        "baseline": {
+          "$ref": "#/$defs/run"
+        },
+        "proposed": {
+          "$ref": "#/$defs/run"
+        },
+        "comparison": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      }
+    },
+    "health_score": {
+      "type": "object",
+      "description": "HEURISTIC score with a full deduction breakdown (see health.py)",
+      "required": [
+        "kind",
+        "score",
+        "packages",
+        "unchecked",
+        "evidence_coverage"
+      ]
+    },
+    "package_metadata": {
+      "type": "object",
+      "description": "Package-index metadata, each entry with source URL and fetch time; absent if never fetched"
+    },
+    "independent_experiments": {
+      "type": "array",
+      "description": "Human-specified experiments verified by real runs, separate from AI proposals",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "origin",
+          "edits",
+          "diff",
+          "baseline",
+          "proposed",
+          "comparison"
+        ],
+        "properties": {
+          "baseline": {
+            "$ref": "#/$defs/run"
+          },
+          "proposed": {
+            "$ref": "#/$defs/run"
+          }
+        }
+      }
+    },
+    "compatibility_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "available",
+        "model"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope": {
+      "type": "object",
+      "description": "Present on per-dependency capsules: which package this capsule covers",
+      "required": [
+        "type",
+        "package"
+      ],
+      "properties": {
+        "type": {
+          "const": "dependency"
+        },
+        "package": {
+          "type": "string"
+        }
+      }
+    },
+    "repository_input": {
+      "type": "object",
+      "description": "How the repository was supplied and exactly which revision was analysed",
+      "required": [
+        "method"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "zip",
+            "local_git",
+            "local_folder",
+            "github",
+            "github_clone"
+          ]
+        },
+        "branch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fingerprint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dirty": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "One per at-risk dependency; evidence kinds: observed | metadata | heuristic | unknown",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "package",
+          "severity",
+          "title",
+          "evidence",
+          "status"
+        ],
+        "properties": {
+          "severity": {
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "status": {
+            "enum": [
+              "open",
+              "ignored",
+              "review_later",
+              "repair_proposed",
+              "repair_failed",
+              "repaired"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "rule",
+                "kind",
+                "text",
+                "source"
+              ]
+            }
+          },
+          "advisories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "impact": {
+      "type": "object",
+      "description": "Dependency -> module -> test graph (static)",
+      "required": [
+        "packages",
+        "limitations"
+      ]
+    },
+    "repair": {
+      "type": "object",
+      "description": "User decisions, patches and repair attempts",
+      "required": [
+        "decisions",
+        "patches",
+        "attempts"
+      ],
+      "properties": {
+        "patches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "finding_id",
+              "package",
+              "origin",
+              "status",
+              "files",
+              "base"
+            ]
+          }
+        },
+        "attempts": {
+          "type": "array"
+        },
+        "decisions": {
+          "type": "object"
+        }
+      }
+    },
+    "prepublish": {
+      "type": "object",
+      "description": "Supplementary pre-publish checks (subordinate to the dependency workflow)",
+      "required": [
+        "status",
+        "checks"
+      ]
+    },
+    "version_metadata": {
+      "type": "object",
+      "description": "Index facts for exact versions (advisories listed, yanked, license), each with source and retrieval time"
+    },
+    "transitive_dependencies": {
+      "type": "array",
+      "description": "Installed in the verification environment but not declared (versions as installed)"
+    },
+    "runtime_check": {
+      "type": "object",
+      "description": "Gemma 4 runtime facts: version, model details, a real inference, GPU if visible"
+    },
+    "severity_criteria": {
+      "type": "object"
+    }
   },
-  "$defs": {"run": {"type": "object", "required": ["status"],
-    "properties": {"status": {"enum": ["passed", "failed", "skipped", "not_run", "environment_blocked"]},
-                   "steps": {"type": "array"}, "tests": {"type": "object"}}}}
+  "$defs": {
+    "run": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "skipped",
+            "not_run",
+            "environment_blocked"
+          ]
+        },
+        "steps": {
+          "type": "array"
+        },
+        "tests": {
+          "type": "object"
+        }
+      }
+    }
+  }
 }

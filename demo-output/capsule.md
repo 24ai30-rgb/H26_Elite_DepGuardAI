@@ -62,6 +62,19 @@ Manifests: requirements-dev.txt, requirements.txt, pyproject.toml · requires-py
 - `setuptools`: linkwatch/resources.py:1
 - `pytest`: tests/conftest.py:6
 
+### Health score (HEURISTIC, not a guarantee): 92/100 · evidence coverage 75%
+
+Heuristic score from the evidence listed below. It is not an objective measure of safety or quality, excludes vulnerabilities, and unchecked data is not counted against any package.
+
+- **jinja2** 65/100: -35 observed_in_baseline_output (observed)
+- **setuptools** 65/100: -35 observed_in_baseline_output (observed)
+- **pydantic** 80/100: -20 conflicting_constraints (observed)
+- **requests** 90/100: -10 private_api_import (observed)
+- **idna** 95/100: -5 no_static_import_found (heuristic)
+- **nose** 95/100: -5 no_static_import_found (heuristic)
+- **six** 95/100: -5 no_static_import_found (heuristic)
+- Unchecked: package index metadata (release recency, Requires-Python, classifiers); repository activity (commits, issues, maintainers); security vulnerabilities
+
 ## 2. AI recommendations (model output, NOT verified fact)
 
 Model: `gemma4:e2b` · runtime: Ollama 0.40.4 · 4.6B Q4_K_M · local HTTP API http://127.0.0.1:11434 (no cloud)
@@ -160,6 +173,45 @@ Status: proposed · accepted 3, rejected 2
   - `<tmp>\venv\Scripts\python.exe -m pip check` → exit 0
   - `-q -p no:cacheprovider --junitxml=<tmp>\junit.xml` → exit 4
 - comparison: {"baseline_status": "failed", "proposed_status": "failed", "note": "proposed run produced no per-test results (e.g. collection/import error): 'regressed' lists every baseline-passing test", "fixed": [], "regressed": ["tests.test_cache::test_cache_round_trip", "tests.test_checker::test_closed_port_is_down", "tests.test_checker::test_latin1_title", "tests.test_checker::test_missing_is_down", "tests.test_checker::test_ok_is_up", "tests.test_checker::test_redirect_is_up", "tests.test_checker::test_slow_is_up", "tests.test_checker::test_user_agent", "tests.test_config::test_sites_file_loads"], "baseline_counts": {"passed": 9, "failed": 1, "skipped": 0}, "proposed_counts": {"passed": 0, "failed": 0, "skipped": 0}}
+
+### Independent experiment: jinja2-only (not AI; human-specified experiment, independent of the Gemma recommendation)
+
+```diff
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,7 +1,7 @@
+ toml==0.10.2
+ appdirs==1.4.4
+ requests==2.31.0
+-Jinja2==2.11.3
++Jinja2==3.1.6
+ pydantic==1.10.13
+ click>=7
+ six
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -13,7 +13,7 @@
+     "toml==0.10.2",
+     "appdirs==1.4.4",
+     "requests==2.31.0",
+-    "Jinja2==2.11.3",
++    "Jinja2==3.1.6",
+     "pydantic>=2",
+     "click>=7",
+     "six",
+
+```
+- **baseline**: failed · counts {'passed': 9, 'failed': 1, 'skipped': 0}
+  - `<python> -m venv <tmp>\venv` → exit 0
+  - `-r requirements-dev.txt -r requirements.txt` → exit 0
+  - `<tmp>\venv\Scripts\python.exe -m pip check` → exit 0
+  - `-q -p no:cacheprovider --junitxml=<tmp>\junit.xml` → exit 1
+- **proposed**: passed · counts {'passed': 10, 'failed': 0, 'skipped': 0}
+  - `<python> -m venv <tmp>\venv` → exit 0
+  - `-r requirements-dev.txt -r requirements.txt` → exit 0
+  - `<tmp>\venv\Scripts\python.exe -m pip check` → exit 0
+  - `-q -p no:cacheprovider --junitxml=<tmp>\junit.xml` → exit 0
+- comparison: {"baseline_status": "failed", "proposed_status": "passed", "note": null, "fixed": ["tests.test_report::test_report_renders_all_sites"], "regressed": [], "baseline_counts": {"passed": 9, "failed": 1, "skipped": 0}, "proposed_counts": {"passed": 10, "failed": 0, "skipped": 0}}
 
 ### Suggested tests (model, not run)
 

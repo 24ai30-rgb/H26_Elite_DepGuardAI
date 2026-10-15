@@ -42,6 +42,16 @@ def _find_line(text: str, needle: str) -> int:
     return 0
 
 
+# Formats DepGuard recognises but does NOT parse: they are listed so nothing is silently ignored.
+UNSUPPORTED = {
+    "Pipfile": "Pipenv manifest", "Pipfile.lock": "Pipenv lockfile", "poetry.lock": "Poetry lockfile", "uv.lock": "uv lockfile", "pdm.lock": "PDM lockfile",
+    "setup.py": "setuptools script (dependencies are code, not data)", "setup.cfg": "setuptools configuration", "environment.yml": "conda environment",
+    "environment.yaml": "conda environment", "package.json": "npm manifest", "package-lock.json": "npm lockfile", "yarn.lock": "yarn lockfile",
+    "Cargo.toml": "Rust manifest", "go.mod": "Go module file", "Gemfile": "Ruby manifest", "composer.json": "PHP manifest",
+}
+LOCKFILES = {"Pipfile.lock", "poetry.lock", "uv.lock", "pdm.lock", "package-lock.json", "yarn.lock"}
+
+
 def scan(root: Path) -> dict:
     root = Path(root)
     deps, issues, manifests, python_requires = [], [], [], None
@@ -69,9 +79,11 @@ def scan(root: Path) -> dict:
                         issues.append({"file": pp.name, "line": 0, "issue": f"unparseable requirement {item!r}: {e}"})
         except (OSError, UnicodeDecodeError, tomllib.TOMLDecodeError) as e:
             issues.append({"file": pp.name, "line": 0, "issue": f"malformed: {e}"})
+    unsupported = [{"file": n, "kind": why, "lockfile": n in LOCKFILES} for n, why in UNSUPPORTED.items() if (root / n).is_file()]
     if not manifests:
-        issues.append({"file": "", "line": 0, "issue": "no supported manifest found"})
-    return {"manifests": manifests, "python_requires": python_requires,
+        issues.append({"file": "", "line": 0, "issue": "no supported manifest found" + (f" (found unsupported: {', '.join(u['file'] for u in unsupported)})" if unsupported else "")})
+    return {"manifests": manifests, "python_requires": python_requires, "unsupported_formats": unsupported,
+            "lockfiles": [u["file"] for u in unsupported if u["lockfile"]],
             "dependencies": deps, "issues": issues, "conflicts": manifest_conflicts(deps)}
 
 

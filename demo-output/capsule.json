@@ -1218,5 +1218,452 @@
     "Vulnerability scanning is intentionally out of scope.",
     "Verification uses a throwaway venv and copied tree, not a container; target code runs as the current user.",
     "AI recommendations are model output and are not facts; only 'executed_tests' reflect real runs."
-  ]
+  ],
+  "independent_experiments": [
+    {
+      "name": "jinja2-only",
+      "origin": "human-specified experiment, independent of the Gemma recommendation",
+      "edits": [
+        {
+          "file": "requirements.txt",
+          "find": "Jinja2==2.11.3",
+          "replace": "Jinja2==3.1.6"
+        },
+        {
+          "file": "pyproject.toml",
+          "find": "\"Jinja2==2.11.3\"",
+          "replace": "\"Jinja2==3.1.6\""
+        }
+      ],
+      "diff": "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,7 +1,7 @@\n toml==0.10.2\n appdirs==1.4.4\n requests==2.31.0\n-Jinja2==2.11.3\n+Jinja2==3.1.6\n pydantic==1.10.13\n click>=7\n six\n--- a/pyproject.toml\n+++ b/pyproject.toml\n@@ -13,7 +13,7 @@\n     \"toml==0.10.2\",\n     \"appdirs==1.4.4\",\n     \"requests==2.31.0\",\n-    \"Jinja2==2.11.3\",\n+    \"Jinja2==3.1.6\",\n     \"pydantic>=2\",\n     \"click>=7\",\n     \"six\",\n",
+      "baseline": {
+        "label": "exp-baseline",
+        "workdir": "<tmp>",
+        "steps": [
+          {
+            "command": [
+              "<python>",
+              "-m",
+              "venv",
+              "<tmp>\\venv"
+            ],
+            "exit_code": 0,
+            "output": ""
+          },
+          {
+            "command": [
+              "<tmp>\\venv\\Scripts\\python.exe",
+              "-m",
+              "pip",
+              "install",
+              "-q",
+              "--disable-pip-version-check",
+              "-r",
+              "requirements-dev.txt",
+              "-r",
+              "requirements.txt"
+            ],
+            "exit_code": 0,
+            "output": ""
+          },
+          {
+            "command": [
+              "<tmp>\\venv\\Scripts\\python.exe",
+              "-m",
+              "pip",
+              "check"
+            ],
+            "exit_code": 0,
+            "output": "No broken requirements found.\n"
+          },
+          {
+            "command": [
+              "<tmp>\\venv\\Scripts\\python.exe",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "--junitxml=<tmp>\\junit.xml"
+            ],
+            "exit_code": 1,
+            "output": ".........F                                                               [100%]\n================================== FAILURES ===================================\n________________________ test_report_renders_all_sites ________________________\n\ntmp_path = WindowsPath('<home>/AppData/Local/Temp/pytest-of-Rayyaan/pytest-33/test_report_renders_all_sites0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000206F8086C30>\n\n    def test_report_renders_all_sites(tmp_path, monkeypatch):\n        monkeypatch.setenv(\"LINKWATCH_CACHE_DIR\", str(tmp_path))\n        cache.save_results(RESULTS)\n        output = tmp_path / \"status.html\"\n>       result = CliRunner().invoke(cli, [\"report\", \"-o\", str(output)], catch_exceptions=False)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests\\test_report.py:20: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n..\\venv\\Lib\\site-packages\\click\\testing.py:687: in invoke\n    return_value = cli.main(args=args or (), prog_name=prog_name, **extra)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1552: in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:2032: in invoke\n    return _process_result(sub_ctx.command.invoke(sub_ctx))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1415: in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:910: in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nlinkwatch\\cli.py:56: in report\n    from .report import render_report\nlinkwatch\\report.py:3: in <module>\n    from jinja2 import Environment, FileSystemLoader, select_autoescape\n..\\venv\\Lib\\site-packages\\jinja2\\__init__.py:12: in <module>\n    from .environment import Environment\n..\\venv\\Lib\\site-packages\\jinja2\\environment.py:25: in <module>\n    from .defaults import BLOCK_END_STRING\n..\\venv\\Lib\\site-packages\\jinja2\\defaults.py:3: in <module>\n    from .filters import FILTERS as DEFAULT_FILTERS  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    # -*- coding: utf-8 -*-\n    \"\"\"Built-in template filters used with the ``|`` operator.\"\"\"\n    import math\n    import random\n    import re\n    import warnings\n    from collections import namedtuple\n    from itertools import chain\n    from itertools import groupby\n    \n    from markupsafe import escape\n    from markupsafe import Markup\n>   from markupsafe import soft_unicode\nE   ImportError: cannot import name 'soft_unicode' from 'markupsafe' (<tmp>\\venv\\Lib\\site-packages\\markupsafe\\__init__.py)\n\n..\\venv\\Lib\\site-packages\\jinja2\\filters.py:13: ImportError\n============================== warnings summary ===============================\nlinkwatch\\resources.py:1\n  <tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html\n    import pkg_resources\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/test_report.py::test_report_renders_all_sites - ImportError: can...\n1 failed, 9 passed, 1 warning in 9.26s\n"
+          }
+        ],
+        "status": "failed",
+        "tests": {
+          "tests.test_cache::test_cache_round_trip": "passed",
+          "tests.test_checker::test_ok_is_up": "passed",
+          "tests.test_checker::test_missing_is_down": "passed",
+          "tests.test_checker::test_redirect_is_up": "passed",
+          "tests.test_checker::test_slow_is_up": "passed",
+          "tests.test_checker::test_closed_port_is_down": "passed",
+          "tests.test_checker::test_latin1_title": "passed",
+          "tests.test_checker::test_user_agent": "passed",
+          "tests.test_config::test_sites_file_loads": "passed",
+          "tests.test_report::test_report_renders_all_sites": "failed"
+        },
+        "pip_check": {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "exit_code": 0,
+          "output": "No broken requirements found.\n"
+        },
+        "resolved": {
+          "appdirs": "1.4.4",
+          "certifi": "2026.7.22",
+          "chardet": "5.2.0",
+          "charset-normalizer": "3.5.2",
+          "click": "8.5.0",
+          "colorama": "0.4.6",
+          "idna": "2.7",
+          "iniconfig": "2.3.1",
+          "jinja2": "2.11.3",
+          "markdown-it-py": "4.2.0",
+          "markupsafe": "3.0.4",
+          "mdurl": "0.1.2",
+          "nose": "1.3.7",
+          "packaging": "26.3",
+          "pip": "25.0.1",
+          "pluggy": "1.6.0",
+          "pydantic": "1.10.13",
+          "pygments": "2.21.0",
+          "pytest": "9.1.1",
+          "python-dateutil": "2.9.0.post0",
+          "requests": "2.31.0",
+          "rich": "15.0.0",
+          "setuptools": "75.8.0",
+          "six": "1.17.0",
+          "toml": "0.10.2",
+          "typing-extensions": "4.16.0",
+          "urllib3": "2.8.0"
+        },
+        "output": ".........F                                                               [100%]\n================================== FAILURES ===================================\n________________________ test_report_renders_all_sites ________________________\n\ntmp_path = WindowsPath('<home>/AppData/Local/Temp/pytest-of-Rayyaan/pytest-33/test_report_renders_all_sites0')\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000206F8086C30>\n\n    def test_report_renders_all_sites(tmp_path, monkeypatch):\n        monkeypatch.setenv(\"LINKWATCH_CACHE_DIR\", str(tmp_path))\n        cache.save_results(RESULTS)\n        output = tmp_path / \"status.html\"\n>       result = CliRunner().invoke(cli, [\"report\", \"-o\", str(output)], catch_exceptions=False)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\ntests\\test_report.py:20: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n..\\venv\\Lib\\site-packages\\click\\testing.py:687: in invoke\n    return_value = cli.main(args=args or (), prog_name=prog_name, **extra)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1552: in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:2032: in invoke\n    return _process_result(sub_ctx.command.invoke(sub_ctx))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:1415: in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n..\\venv\\Lib\\site-packages\\click\\core.py:910: in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nlinkwatch\\cli.py:56: in report\n    from .report import render_report\nlinkwatch\\report.py:3: in <module>\n    from jinja2 import Environment, FileSystemLoader, select_autoescape\n..\\venv\\Lib\\site-packages\\jinja2\\__init__.py:12: in <module>\n    from .environment import Environment\n..\\venv\\Lib\\site-packages\\jinja2\\environment.py:25: in <module>\n    from .defaults import BLOCK_END_STRING\n..\\venv\\Lib\\site-packages\\jinja2\\defaults.py:3: in <module>\n    from .filters import FILTERS as DEFAULT_FILTERS  # noqa: F401\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n    # -*- coding: utf-8 -*-\n    \"\"\"Built-in template filters used with the ``|`` operator.\"\"\"\n    import math\n    import random\n    import re\n    import warnings\n    from collections import namedtuple\n    from itertools import chain\n    from itertools import groupby\n    \n    from markupsafe import escape\n    from markupsafe import Markup\n>   from markupsafe import soft_unicode\nE   ImportError: cannot import name 'soft_unicode' from 'markupsafe' (<tmp>\\venv\\Lib\\site-packages\\markupsafe\\__init__.py)\n\n..\\venv\\Lib\\site-packages\\jinja2\\filters.py:13: ImportError\n============================== warnings summary ===============================\nlinkwatch\\resources.py:1\n  <tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html\n    import pkg_resources\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ===========================\nFAILED tests/test_report.py::test_report_renders_all_sites - ImportError: can...\n1 failed, 9 passed, 1 warning in 9.26s\n",
+        "exit_code": 1
+      },
+      "proposed": {
+        "label": "exp-jinja2-only",
+        "workdir": "<tmp>",
+        "steps": [
+          {
+            "command": [
+              "<python>",
+              "-m",
+              "venv",
+              "<tmp>\\venv"
+            ],
+            "exit_code": 0,
+            "output": ""
+          },
+          {
+            "command": [
+              "<tmp>\\venv\\Scripts\\python.exe",
+              "-m",
+              "pip",
+              "install",
+              "-q",
+              "--disable-pip-version-check",
+              "-r",
+              "requirements-dev.txt",
+              "-r",
+              "requirements.txt"
+            ],
+            "exit_code": 0,
+            "output": ""
+          },
+          {
+            "command": [
+              "<tmp>\\venv\\Scripts\\python.exe",
+              "-m",
+              "pip",
+              "check"
+            ],
+            "exit_code": 0,
+            "output": "No broken requirements found.\n"
+          },
+          {
+            "command": [
+              "<tmp>\\venv\\Scripts\\python.exe",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "--junitxml=<tmp>\\junit.xml"
+            ],
+            "exit_code": 0,
+            "output": "..........                                                               [100%]\n============================== warnings summary ===============================\nlinkwatch\\resources.py:1\n  <tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html\n    import pkg_resources\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 8.73s\n"
+          }
+        ],
+        "status": "passed",
+        "tests": {
+          "tests.test_cache::test_cache_round_trip": "passed",
+          "tests.test_checker::test_ok_is_up": "passed",
+          "tests.test_checker::test_missing_is_down": "passed",
+          "tests.test_checker::test_redirect_is_up": "passed",
+          "tests.test_checker::test_slow_is_up": "passed",
+          "tests.test_checker::test_closed_port_is_down": "passed",
+          "tests.test_checker::test_latin1_title": "passed",
+          "tests.test_checker::test_user_agent": "passed",
+          "tests.test_config::test_sites_file_loads": "passed",
+          "tests.test_report::test_report_renders_all_sites": "passed"
+        },
+        "pip_check": {
+          "command": [
+            "<tmp>\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "exit_code": 0,
+          "output": "No broken requirements found.\n"
+        },
+        "resolved": {
+          "appdirs": "1.4.4",
+          "certifi": "2026.7.22",
+          "chardet": "5.2.0",
+          "charset-normalizer": "3.5.2",
+          "click": "8.5.0",
+          "colorama": "0.4.6",
+          "idna": "2.7",
+          "iniconfig": "2.3.1",
+          "jinja2": "3.1.6",
+          "markdown-it-py": "4.2.0",
+          "markupsafe": "3.0.4",
+          "mdurl": "0.1.2",
+          "nose": "1.3.7",
+          "packaging": "26.3",
+          "pip": "25.0.1",
+          "pluggy": "1.6.0",
+          "pydantic": "1.10.13",
+          "pygments": "2.21.0",
+          "pytest": "9.1.1",
+          "python-dateutil": "2.9.0.post0",
+          "requests": "2.31.0",
+          "rich": "15.0.0",
+          "setuptools": "75.8.0",
+          "six": "1.17.0",
+          "toml": "0.10.2",
+          "typing-extensions": "4.16.0",
+          "urllib3": "2.8.0"
+        },
+        "output": "..........                                                               [100%]\n============================== warnings summary ===============================\nlinkwatch\\resources.py:1\n  <tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html\n    import pkg_resources\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n10 passed, 1 warning in 8.73s\n",
+        "exit_code": 0
+      },
+      "comparison": {
+        "baseline_status": "failed",
+        "proposed_status": "passed",
+        "note": null,
+        "fixed": [
+          "tests.test_report::test_report_renders_all_sites"
+        ],
+        "regressed": [],
+        "baseline_counts": {
+          "passed": 9,
+          "failed": 1,
+          "skipped": 0
+        },
+        "proposed_counts": {
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0
+        }
+      }
+    }
+  ],
+  "health_score": {
+    "kind": "heuristic",
+    "score": 92,
+    "scale": "0-100; higher = fewer observed resilience issues",
+    "disclaimer": "Heuristic score from the evidence listed below. It is not an objective measure of safety or quality, excludes vulnerabilities, and unchecked data is not counted against any package.",
+    "weights": {
+      "observed_in_baseline_output": {
+        "high": 35,
+        "warn": 15
+      },
+      "conflicting_constraints": 20,
+      "imported_but_undeclared": 15,
+      "private_api_import": 10,
+      "inactive_classifier": 25,
+      "requires_python_excludes": 30,
+      "no_static_import_found": 5,
+      "stale_latest_release": 10,
+      "pip_check_conflicts": 30
+    },
+    "stale_days": 730,
+    "repo_deductions": [],
+    "packages": [
+      {
+        "package": "jinja2",
+        "score": 65,
+        "deductions": [
+          {
+            "rule": "observed_in_baseline_output",
+            "points": 35,
+            "basis": "observed",
+            "evidence": [
+              "E   ImportError: cannot import name 'soft_unicode' from 'markupsafe' (<tmp>\\venv\\Lib\\site-packages\\markupsafe\\__init__.py)",
+              "..\\venv\\Lib\\site-packages\\jinja2\\filters.py:13: ImportError"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "setuptools",
+        "score": 65,
+        "deductions": [
+          {
+            "rule": "observed_in_baseline_output",
+            "points": 35,
+            "basis": "observed",
+            "evidence": [
+              "<tmp>\\repo\\linkwatch\\resources.py:1: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "pydantic",
+        "score": 80,
+        "deductions": [
+          {
+            "rule": "conflicting_constraints",
+            "points": 20,
+            "basis": "observed",
+            "evidence": [
+              "requirements.txt pins 1.10.13 but pyproject.toml requires '>=2'"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "requests",
+        "score": 90,
+        "deductions": [
+          {
+            "rule": "private_api_import",
+            "points": 10,
+            "basis": "observed",
+            "evidence": [
+              "linkwatch/encoding.py:5 imports requests.utils._parse_content_type_header"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "idna",
+        "score": 95,
+        "deductions": [
+          {
+            "rule": "no_static_import_found",
+            "points": 5,
+            "basis": "heuristic",
+            "evidence": [
+              "declared in manifest; no static import found (not proof of non-use)"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "nose",
+        "score": 95,
+        "deductions": [
+          {
+            "rule": "no_static_import_found",
+            "points": 5,
+            "basis": "heuristic",
+            "evidence": [
+              "declared in manifest; no static import found (not proof of non-use)"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "six",
+        "score": 95,
+        "deductions": [
+          {
+            "rule": "no_static_import_found",
+            "points": 5,
+            "basis": "heuristic",
+            "evidence": [
+              "declared in manifest; no static import found (not proof of non-use)"
+            ]
+          }
+        ],
+        "metadata_checked": false
+      },
+      {
+        "package": "appdirs",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      },
+      {
+        "package": "chardet",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      },
+      {
+        "package": "click",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      },
+      {
+        "package": "pytest",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      },
+      {
+        "package": "python-dateutil",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      },
+      {
+        "package": "rich",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      },
+      {
+        "package": "toml",
+        "score": 100,
+        "deductions": [],
+        "metadata_checked": false
+      }
+    ],
+    "unchecked": [
+      {
+        "check": "package index metadata (release recency, Requires-Python, classifiers)",
+        "reason": "not fetched for 14 of 14 packages (needs network and an explicit request)"
+      },
+      {
+        "check": "repository activity (commits, issues, maintainers)",
+        "reason": "never checked by DepGuard"
+      },
+      {
+        "check": "security vulnerabilities",
+        "reason": "out of scope"
+      }
+    ],
+    "evidence_coverage": {
+      "checks_done": 42,
+      "checks_possible": 56,
+      "percent": 75
+    }
+  }
 }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DepGuard AI</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0d10'/%3E%3Cpath d='M16 5l9 4v7c0 5.5-3.8 9.5-9 11-5.2-1.5-9-5.5-9-11V9z' fill='none' stroke='%237c9cff' stroke-width='2.2'/%3E%3Cpath d='M12 16l3 3 5-6' fill='none' stroke='%233fb950' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l10 4.4v7.6c0 6-4.2 10.4-10 12-5.8-1.6-10-6-10-12V8.400z" fill="none" stroke="#7c9cff" stroke-width="2"/><path d="M11.500 16l3.500 3.500 6-7" fill="none" stroke="#3fb950" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>DepGuard</b> <span class="muted">AI</span><div class="tiny muted">Dependency resilience</div></div>
+    </div>
+    <nav id="nav" aria-label="Main"></nav>
+    <div class="side-foot tiny muted">
+      <div>Local only · 127.0.0.1</div>
+      <div>No cloud, no API keys</div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu" id="menu" aria-label="Toggle navigation">☰</button>
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-right" id="topright"></div>
+    </header>
+    <main id="view" tabindex="-1"></main>
+  </div>
+</div>
+<div id="drawer" class="drawer" hidden></div>
+<div id="toast" class="toast" hidden></div>
+<script src="/workflow.js"></script>
+<script src="/pages.js"></script>
+<script src="/advisor.js"></script>
+<script src="/repair.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
